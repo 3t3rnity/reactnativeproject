@@ -7,10 +7,15 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { changeAuth } from "../redux/actionCreators/appActions";
+import { useSelector, useDispatch } from "react-redux";
 import bg from "../../assets/bg.png";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const LoginScreen = ({ navigation, authFunc }) => {
+const LoginScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const test = useSelector((state) => state.appReducer);
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.container}
@@ -40,8 +45,8 @@ const LoginScreen = ({ navigation, authFunc }) => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            console.log(authFunc);
-            // navigation.navigate("home");
+            dispatch(changeAuth());
+            navigation.navigate("home2");
           }}
           style={[styles.registration, { marginTop: 24 }]}
         >
