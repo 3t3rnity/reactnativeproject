@@ -46,7 +46,6 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => {
             dispatch(changeAuth());
-            navigation.navigate("home2");
           }}
           style={[styles.registration, { marginTop: 24 }]}
         >

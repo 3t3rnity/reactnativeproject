@@ -2,41 +2,22 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { changeAuth } from "../redux/actionCreators/appActions";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from "react-native";
 import logo from "../../assets/logo.png";
 import bg from "../../assets/bg.png";
 
-const SheduleScreen = ({ navigation, route }) => {
+const SettingsScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
-      <Image source={bg} style={styles.bgImage} />
-      <Text
-        style={{
-          fontSize: 32,
-          color: "#FFFFFF",
-          marginBottom: 80,
-          fontFamily: "Montserrat",
-        }}
-      >
-        ScheduleScreen
-      </Text>
-      <Image source={logo} style={{ marginBottom: 24 }} />
-      <TouchableOpacity
-        onPress={() => console.log(route)}
-        style={styles.registration}
-      >
-        <Text style={(styles.text, styles.registration)}>
-          Зарегистрироваться
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => dispatch(changeAuth())}
-        style={styles.enter}
-      >
-        <Text style={styles.text}>Войти</Text>
-      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -82,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SheduleScreen;
+export default SettingsScreen;
