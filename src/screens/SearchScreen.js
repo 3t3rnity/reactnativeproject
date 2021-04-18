@@ -10,8 +10,8 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  FlatList,
 } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const SearchScreen = ({ navigation }) => {
   const searchScreenReducer = useSelector((state) => state.searchScreenReducer);
@@ -19,11 +19,7 @@ const SearchScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      enableOnAndroid
-      scrollEnabled={true}
-    >
+    <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.searchContainer}>
           <TextInput
@@ -69,9 +65,41 @@ const SearchScreen = ({ navigation }) => {
             </TouchableOpacity>
           ))}
         </View>
+
+        <View style={styles.searchData}>
+          <FlatList
+            data={
+              searchScreenReducer.tabState === 0
+                ? searchScreenReducer.searchData
+                : searchScreenReducer.tabState === 1
+                ? searchScreenReducer.searchData.filter(
+                    (el) => el.type === "group"
+                  )
+                : searchScreenReducer.searchData.filter(
+                    (el) => el.type === "teacher"
+                  )
+            }
+            renderItem={({ item, id }) => (
+              <TouchableOpacity style={styles.searchDataItem} key={id}>
+                <Ionicons
+                  name={
+                    item.type === "group"
+                      ? "people-outline"
+                      : "briefcase-outline"
+                  }
+                  size={16}
+                  color="white"
+                />
+                <Text style={[styles.text, { marginLeft: 16, fontSize: 16 }]}>
+                  {item.title}
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
         <StatusBar style="auto" />
       </View>
-    </KeyboardAwareScrollView>
+    </View>
   );
 };
 
@@ -99,6 +127,17 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     color: "white",
     backgroundColor: "#4B4B4B",
+  },
+  searchData: {
+    minWidth: "100%",
+    maxHeight: "100%",
+    flex: 1,
+  },
+  searchDataItem: {
+    paddingHorizontal: "5%",
+    paddingVertical: 16,
+    flexDirection: "row",
+    alignItems: "center",
   },
   searchInput: {
     width: "90%",
