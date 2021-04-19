@@ -18,48 +18,35 @@ const SettingsScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => dispatch(changeAuth())}
+      >
+        <Text style={styles.text}>Выход</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  html: {
-    fontFamily: "bold",
-  },
   container: {
     flex: 1,
     backgroundColor: "#1E1E1E",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    paddingBottom: 80,
+    paddingTop: 40,
   },
   text: {
     color: "#FFFFFF",
     fontFamily: "Montserrat",
     fontSize: 16,
   },
-  registration: {
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    backgroundColor: "#55B432",
-    fontFamily: "Montserrat",
-    borderRadius: 40,
-    color: "#FFFFFF",
-    fontSize: 16,
-  },
-  bgImage: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-  },
-  enter: {
-    flex: 1,
-    width: "40%",
-    maxHeight: "10%",
+  button: {
+    borderWidth: 1,
+    borderColor: "#1E1E1E",
+    borderBottomColor: "white",
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 32,
+    height: "12%",
+    width: "100%",
   },
 });
 

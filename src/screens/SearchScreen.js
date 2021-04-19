@@ -3,7 +3,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTabState } from "../redux/actionCreators/searchScreenActions";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { changeAuth } from "../redux/actionCreators/appActions";
 import {
   StyleSheet,
   Text,
@@ -141,7 +140,8 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     width: "90%",
-    color: "white",
+    color: "#FFFFFF",
+    fontFamily: "Montserrat",
   },
   filter: {
     marginTop: 10,
@@ -160,7 +160,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "white",
+    color: "#FFFFFF",
+    fontFamily: "Montserrat",
+    fontSize: 12,
   },
 });
 

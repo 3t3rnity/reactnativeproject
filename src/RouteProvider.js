@@ -107,6 +107,9 @@ const RouteProvider = ({ navigation }) => {
       tabBarOptions={{
         activeTintColor: "white",
         inactiveTintColor: "gray",
+        labelStyle: {
+          fontFamily: "Montserrat",
+        },
         style: {
           backgroundColor: "#282828",
           borderTopColor: "#282828",
