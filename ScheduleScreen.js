@@ -1,35 +1,41 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { setDate } from "../redux/actionCreators/scheduleScreenActions";
+import moment from "moment";
+import "moment/locale/ru";
 import DatePicker from "react-native-datepicker";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { changeAuth } from "../redux/actionCreators/appActions";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  TextInput,
+} from "react-native";
 
 const SheduleScreen = ({ navigation, route }) => {
-  const dispatch = useDispatch();
-
   const scheduleScreenReducer = useSelector(
     (state) => state.scheduleScreenReducer
   );
-
-  useEffect(() => {
-    dispatch(setDate());
-  }, []);
-
+  const dispatch = useDispatch();
+  var localLocale = moment().locale("ru");
+  console.log(localLocale.format("LLLL"));
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <View style={styles.date}>
+        <View style={styles.filter}>
           <View>
-            <Text style={styles.textDay}>{scheduleScreenReducer.date.day}</Text>
-            <Text style={styles.text}>{scheduleScreenReducer.date.other}</Text>
+            <Text style={styles.textDay}>{moment().format("dddd")}</Text>
+            <Text style={styles.text}>{moment().format("LL")}</Text>
           </View>
           <View style={styles.calendar}>
             <DatePicker
               hideText="false"
               onDateChange={(date) => {
-                dispatch(setDate(date));
+                this.setState({ date: date });
               }}
             />
           </View>
@@ -73,11 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#1E1E1E",
     alignItems: "center",
     justifyContent: "flex-start",
-  },
-  date: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
   },
   searchContainer: {
     flex: 1,
@@ -124,12 +125,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontFamily: "Montserrat",
   },
   textDay: {
     color: "white",
-    fontFamily: "Montserrat",
-    fontSize: 26,
+    fontSize: 22,
   },
 });
 export default SheduleScreen;
